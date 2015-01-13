@@ -1,4 +1,4 @@
-package com.datastructures.singlelinkedlist;
+package com.backtracking.eightqueens;
 
 import com.backtracking.eightqueens.EightQueensProblem;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class EightQueensProblemTest {
     @Test
     public void run() {
         EightQueensProblem problem = new EightQueensProblem();
-        problem.placeAQueen((byte)0);
+        problem.placeAQueen((byte) 0);
         System.out.println("Finally queens are positioned at: " + problem.getResult());
     }
 }
