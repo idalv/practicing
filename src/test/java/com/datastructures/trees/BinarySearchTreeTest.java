@@ -87,4 +87,26 @@ public class BinarySearchTreeTest {
 
         Assert.assertEquals("131021225203129", nodes.toString());
     }
+
+    @Test
+    public void testInsert() {
+        BinarySearchTree binarySearchTree = new BinarySearchTree(root);
+        binarySearchTree.insert(11);
+
+        Node<Integer> nodeFound = binarySearchTree.search(11);
+
+        Assert.assertNotNull(nodeFound);
+        Assert.assertEquals((Integer) 11, (Integer) nodeFound.key);
+
+        final StringBuilder nodes = new StringBuilder();
+        Node current = root;
+        binarySearchTree.traverseDepthFirstInOrderRecursively(current, new NodeVisitor() {
+            @Override
+            public void visitNode(Node node) {
+                nodes.append(node.key);
+            }
+        });
+
+        Assert.assertEquals("21011121320252931", nodes.toString());
+    }
 }

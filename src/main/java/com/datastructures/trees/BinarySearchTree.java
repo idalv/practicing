@@ -93,6 +93,31 @@ public class BinarySearchTree {
                 stack.addFirst(current.left);
             }
         }
+    }
 
+    public void insert(Integer key) {
+        if (root == null) {
+            root = new Node<Integer>(key);
+            return;
+        }
+
+        Node<Integer> current = root;
+        Node<Integer> prev = null;
+        while (current != null) {
+            prev = current;
+            if (current.key == key) {
+                return;
+            } else if (current.key > key) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+
+        if (prev.key > key) {
+            prev.left = new Node<Integer>(key);
+        } else {
+            prev.right = new Node<Integer>(key);
+        }
     }
 }
