@@ -1,5 +1,7 @@
 package com.datastructures.trees;
 
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Vladimir Mitev
@@ -37,5 +39,60 @@ public class BinarySearchTree {
         } else {
             return searchRecursively(current.right, key);
         }
+    }
+
+    public void traverseBreadthFirst(NodeVisitor nodeVisitor) {
+        if (root == null) {
+            return;
+        }
+
+        LinkedList<Node<Integer>> queue = new LinkedList<Node<Integer>>();
+        queue.addLast(root);
+        while (!queue.isEmpty()) {
+            Node current = queue.removeFirst();
+            nodeVisitor.visitNode(current);
+            if (current.left != null) {
+                queue.addLast(current.left);
+            }
+            if (current.right != null) {
+                queue.addLast(current.right);
+            }
+        }
+
+    }
+
+
+    public void traverseDepthFirstInOrderRecursively(Node current, NodeVisitor nodeVisitor) {
+        if (current == null) {
+            return;
+        }
+
+        if (current.left != null) {
+            traverseDepthFirstInOrderRecursively(current.left, nodeVisitor);
+        }
+        nodeVisitor.visitNode(current);
+        if (current.right != null) {
+            traverseDepthFirstInOrderRecursively(current.right, nodeVisitor);
+        }
+    }
+
+    public void traverseDepthFirstPreOrder(NodeVisitor nodeVisitor) {
+        if (root == null) {
+            return;
+        }
+
+        LinkedList<Node<Integer>> stack = new LinkedList<Node<Integer>>();
+        stack.addFirst(root);
+        while (!stack.isEmpty()) {
+            Node current = stack.removeFirst();
+            nodeVisitor.visitNode(current);
+            if (current.right != null) {
+                stack.addFirst(current.right);
+            }
+            if (current.left != null) {
+                stack.addFirst(current.left);
+            }
+        }
+
     }
 }
