@@ -120,4 +120,114 @@ public class BinarySearchTree {
             prev.right = new Node<Integer>(key);
         }
     }
+
+    public void deleteByMerging(Integer key) {
+        if (root == null) {
+            return;
+        }
+
+        Node<Integer> current = root;
+        Node<Integer> prev = null;
+        while (current != null) {
+            if (current.key == key) {
+                break;
+            } else if (current.key > key) {
+                prev = current;
+                current = current.left;
+            }  else {
+                prev = current;
+                current = current.right;
+            }
+        }
+
+        if (current == null) {
+            // Node not found. Nothing will be deleted
+            return;
+        }
+
+        Node<Integer> newRoot = null;
+        if (current.left == null) {
+            newRoot = current.right;
+        } else if (current.right == null) {
+            newRoot = current.left;
+        } else {
+            // Now the more complex case. The node to be deleted has both children
+            // The new root to be attached will be the left tree's root
+            newRoot = current.left;
+            // Find the biggest key from the left tree (the rightest one)
+            Node currLeft = current.left;
+            while (currLeft.right != null) {
+                currLeft = currLeft.right;
+            }
+            // Attach the right tree as a right child of the node found
+            currLeft.right = current.right;
+        }
+
+        if (current == root) {
+            root = newRoot;
+        } else if (prev.left == current) {
+            prev.left = newRoot;
+        } else {
+            prev.right = newRoot;
+        }
+    }
+
+    public void deleteByCopying(Integer key) {
+        if (root == null) {
+            return;
+        }
+
+        Node<Integer> current = root;
+        Node<Integer> prev = null;
+        while (current != null) {
+            if (current.key == key) {
+                break;
+            } else if (current.key > key) {
+                prev = current;
+                current = current.left;
+            }  else {
+                prev = current;
+                current = current.right;
+            }
+        }
+
+        if (current == null) {
+            // Node not found. Nothing will be deleted
+            return;
+        }
+
+        Node<Integer> newRoot = null;
+        if (current.left == null) {
+            newRoot = current.right;
+        } else if (current.right == null) {
+            newRoot = current.left;
+        } else {
+            // Now the more complex case. The node to be deleted has both children
+            // Find the biggest key from the left tree (the rightest one)
+            Node<Integer> currLeft = current.left;
+            Node previous = current;
+            while (currLeft.right != null) {
+                previous = currLeft;
+                currLeft = currLeft.right;
+            }
+            // Assign the key of the found node to the node that should be deleted
+            current.key =  currLeft.key;
+            // Node delete the new node
+            if (previous == current) {
+                previous.left = currLeft.left;
+            } else {
+                previous.right = currLeft.left;
+            }
+            // The new root to be attached is still the current one. It has new value now
+            newRoot = current;
+        }
+
+        if (current == root) {
+            root = newRoot;
+        } else if (prev.left == current) {
+            prev.left = newRoot;
+        } else {
+            prev.right = newRoot;
+        }
+    }
 }

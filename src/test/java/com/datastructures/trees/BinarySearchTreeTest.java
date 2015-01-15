@@ -109,4 +109,70 @@ public class BinarySearchTreeTest {
 
         Assert.assertEquals("21011121320252931", nodes.toString());
     }
+
+    @Test
+    public void testDeleteByMerging() {
+        TreeBuilder<Integer> treeBuilder = new TreeBuilder<Integer>(13);
+        // Build the left tree
+        treeBuilder.root().left(10).advanceLeft().left(2).right(12);
+        // Build the right tree
+        treeBuilder.root().right(25).advanceRight().left(20).right(31).advanceRight().left(29);
+
+        BinarySearchTree tree = new BinarySearchTree(treeBuilder.build());
+
+        tree.deleteByMerging(31);
+        final StringBuilder nodes = new StringBuilder();
+        tree.traverseBreadthFirst(new NodeVisitor() {
+            @Override
+            public void visitNode(Node node) {
+                nodes.append(node.key);
+            }
+        });
+
+        Assert.assertEquals("1310252122029", nodes.toString());
+
+        tree.deleteByMerging(13);
+        final StringBuilder nodes2 = new StringBuilder();
+        tree.traverseBreadthFirst(new NodeVisitor() {
+            @Override
+            public void visitNode(Node node) {
+                nodes2.append(node.key);
+            }
+        });
+
+        Assert.assertEquals("10212252029", nodes2.toString());
+    }
+
+    @Test
+    public void testDeleteByCopying() {
+        TreeBuilder<Integer> treeBuilder = new TreeBuilder<Integer>(13);
+        // Build the left tree
+        treeBuilder.root().left(10).advanceLeft().left(2).right(12);
+        // Build the right tree
+        treeBuilder.root().right(25).advanceRight().left(20).right(31).advanceRight().left(29);
+
+        BinarySearchTree tree = new BinarySearchTree(treeBuilder.build());
+
+        tree.deleteByCopying(31);
+        final StringBuilder nodes = new StringBuilder();
+        tree.traverseBreadthFirst(new NodeVisitor() {
+            @Override
+            public void visitNode(Node node) {
+                nodes.append(node.key);
+            }
+        });
+
+        Assert.assertEquals("1310252122029", nodes.toString());
+
+        tree.deleteByCopying(13);
+        final StringBuilder nodes2 = new StringBuilder();
+        tree.traverseBreadthFirst(new NodeVisitor() {
+            @Override
+            public void visitNode(Node node) {
+                nodes2.append(node.key);
+            }
+        });
+
+        Assert.assertEquals("12102522029", nodes2.toString());
+    }
 }
