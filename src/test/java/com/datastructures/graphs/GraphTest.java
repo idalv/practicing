@@ -28,4 +28,12 @@ public class GraphTest {
 
         Assert.assertArrayEquals(new int[] {1, 6, 7, 9, 2, 3, 5, 8, 4}, visitedVertex);
     }
+
+    @Test
+    public void testBreadthFirstSearch() {
+        Graph graph = new Graph(GraphTest.graph);
+        int[] visitedVertex = graph.breadthFirstSearch();
+
+        Assert.assertArrayEquals(new int[] {1, 6, 7, 9, 2, 3, 4, 8, 5}, visitedVertex);
+    }
 }

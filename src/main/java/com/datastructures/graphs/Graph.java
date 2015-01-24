@@ -1,5 +1,7 @@
 package com.datastructures.graphs;
 
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Vladimir Mitev
@@ -31,6 +33,29 @@ public class Graph {
         for (int i = 0; i < graph.length; i++) {
             if (visitedVertex[i] == 0) {
                 DFS(i, visitedVertex);
+            }
+        }
+
+        return visitedVertex;
+    }
+
+    public int[] breadthFirstSearch() {
+        int visitedVertex[] = new int[graph.length];
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        int counter = 1;
+        for (int i = 0; i < graph.length; i++) {
+            if (visitedVertex[i] == 0) {
+                visitedVertex[i] = counter++;
+                queue.addLast(i);
+                while (!queue.isEmpty()) {
+                    int current = queue.removeFirst();
+                    for (int j = 0; j < graph[current].length; j++) {
+                        if (graph[current][j] > 0 && visitedVertex[j] == 0) {
+                            visitedVertex[j] = counter++;
+                            queue.addLast(j);
+                        }
+                    }
+                }
             }
         }
 
