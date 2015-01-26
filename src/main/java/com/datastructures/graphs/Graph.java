@@ -1,6 +1,6 @@
 package com.datastructures.graphs;
 
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -60,6 +60,68 @@ public class Graph {
         }
 
         return visitedVertex;
+    }
+
+    public int[] dijkstra(int first) {
+        int[] currentDist = initializeCurrentDist(first);
+        int[] predecessor = new int[graph.length];
+
+        Map<Integer, Integer> toBeChecked = initializeToBeChecked(first);
+        while (!toBeChecked.isEmpty()) {
+            int current = getNextMin(toBeChecked);
+            toBeChecked.remove(current);
+
+            for (int j = 0; j < graph[current].length; j++) {
+                if (graph[current][j] > 0) {
+                    int newDist = currentDist[current] + graph[current][j];
+
+                    if (currentDist[j] > newDist) {
+                        currentDist[j] = newDist;
+                        predecessor[j] = current;
+                        toBeChecked.put(j, newDist);
+                    }
+                }
+            }
+        }
+
+        return currentDist;
+
+    }
+
+    private Map<Integer, Integer> initializeToBeChecked(int first) {
+        Map<Integer, Integer> vertexDist = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < graph.length; i++) {
+            int distance = (first == i) ? 0 : Integer.MAX_VALUE;
+            vertexDist.put(i, distance);
+        }
+
+        return vertexDist;
+    }
+
+    private int getNextMin(Map<Integer, Integer> toBeChecked) {
+        int vertexIndex = -1;
+        int vertexDist = Integer.MAX_VALUE;
+        for (Map.Entry<Integer, Integer> vertex : toBeChecked.entrySet()) {
+            if (vertex.getValue() < vertexDist) {
+                vertexIndex = vertex.getKey();
+                vertexDist = vertex.getValue();
+            }
+        }
+
+        return vertexIndex;
+    }
+
+    private int[] initializeCurrentDist(int first) {
+        int[] currentDist = new int[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            if (first == i) {
+                currentDist[i] = 0;
+            } else {
+                currentDist[i] = Integer.MAX_VALUE;
+            }
+        }
+        return  currentDist;
     }
 
 
