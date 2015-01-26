@@ -72,7 +72,7 @@ public class Graph {
             toBeChecked.remove(current);
 
             for (int j = 0; j < graph[current].length; j++) {
-                if (graph[current][j] > 0) {
+                if (graph[current][j] > 0 && toBeChecked.containsKey(j)) {
                     int newDist = currentDist[current] + graph[current][j];
 
                     if (currentDist[j] > newDist) {
