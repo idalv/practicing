@@ -32,6 +32,17 @@ public class GraphTest {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
             {0, 0, 0, 0, 0, 0, 1, 0, 0, 0}};
 
+    static int[][] cycleGraphNegative = {{0, 1, 2},
+            {1, 0, 0},
+            {1, 0, 0}};
+
+    static int[][] cycleGraphPositive = {{0, 1, 2, 0, 0, 0},
+            {1, 0, 0, 0, 0, 0},
+            {1, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 1, 1},
+            {0, 0, 0, 1, 0, 1},
+            {0, 0, 0, 1, 1, 0}};
+
     @Test
     public void testDepthFirstSearch() {
         Graph graph = new Graph(GraphTest.graph);
@@ -54,5 +65,17 @@ public class GraphTest {
         int[] shortestDist = graph.dijkstra(3);
 
         Assert.assertArrayEquals(new int[] {4, 9, 11, 0, 5, 8, 12, 1, 9, 11}, shortestDist);
+    }
+
+    @Test
+    public void testCycleDetectorNegative() {
+        Graph graph = new Graph(GraphTest.cycleGraphNegative);
+        Assert.assertFalse(graph.cycleDetector());
+    }
+
+    @Test
+    public void testCycleDetectorPositive() {
+        Graph graph = new Graph(GraphTest.cycleGraphPositive);
+        Assert.assertTrue(graph.cycleDetector());
     }
 }

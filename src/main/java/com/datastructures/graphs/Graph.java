@@ -124,5 +124,39 @@ public class Graph {
         return  currentDist;
     }
 
+    private boolean cycleDetector(int vertex, int visitedVertex[], int edges[][]) {
+        // Visit the current vertex
+        visitedVertex[vertex] = counter++;
+        for (int i = 0; i < graph[vertex].length; i++) {
+            // Get all adjacent vertices
+            if (graph[vertex][i] > 0) {
+                if (visitedVertex[i] == 0) {
+                    edges[vertex][i] = 1;
+                    if (cycleDetector(i, visitedVertex, edges)) {
+                        return true;
+                    }
+                } else if (edges[i][vertex] == 0) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean cycleDetector() {
+        int visitedVertex[] = new int[graph.length];
+        int edges[][] = new int[graph.length][graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            if (visitedVertex[i] == 0) {
+                if (cycleDetector(i, visitedVertex, edges)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
 }
