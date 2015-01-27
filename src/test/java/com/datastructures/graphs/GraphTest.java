@@ -43,6 +43,14 @@ public class GraphTest {
             {0, 0, 0, 1, 0, 1},
             {0, 0, 0, 1, 1, 0}};
 
+    static int[][] digraph = {{0, 0, 1, 1, 0, 0, 0},
+            {0, 0, 0, 0, 1, 0, 0},
+            {0, 0, 0, 1, 0, 1, 0},
+            {0, 1, 0, 0, 1, 1, 0},
+            {0, 0, 0, 0, 0, 0, 1},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0}};
+
     @Test
     public void testDepthFirstSearch() {
         Graph graph = new Graph(GraphTest.graph);
@@ -89,5 +97,11 @@ public class GraphTest {
     public void testConnectivityDetectorPositive() {
         Graph graph = new Graph(GraphTest.cycleGraphNegative);
         Assert.assertTrue(graph.connectivityDetector());
+    }
+
+    @Test
+    public void testTopologicalSorting() {
+        Graph graph = new Graph(GraphTest.digraph);
+        Assert.assertArrayEquals(new int[] {7, 3, 6, 5, 2, 4, 1}, graph.topologicalSearch());
     }
 }

@@ -12,6 +12,7 @@ import java.util.*;
 public class Graph {
     private int[][] graph;
     private int counter = 1;
+    private int ts = 1;
 
     public Graph(int[][] graph) {
         this.graph = graph;
@@ -162,6 +163,31 @@ public class Graph {
         int visitedVertex[] = new int[graph.length];
         DFS(0, visitedVertex);
         return counter - 1 == graph.length;
+    }
+
+    private void TS(int vertex, int[] visitedVertices, int[] tsNum) {
+        visitedVertices[vertex] = counter++;
+
+        for (int i = 0; i < graph[vertex].length; i++) {
+            if (graph[vertex][i] > 0 && visitedVertices[i] == 0) {
+                TS(i, visitedVertices, tsNum);
+            }
+        }
+
+        tsNum[vertex] = ts++;
+    }
+
+    public int[] topologicalSearch() {
+        int[] visitedVertices = new int[graph.length];
+        int[] tsNum = new int[graph.length];
+
+        for (int i = 0; i < graph.length; i++) {
+            if (visitedVertices[i] == 0) {
+                TS(i, visitedVertices, tsNum);
+            }
+        }
+
+        return tsNum;
     }
 
 
