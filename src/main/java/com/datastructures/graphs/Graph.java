@@ -158,5 +158,11 @@ public class Graph {
         return false;
     }
 
+    public boolean connectivityDetector() {
+        int visitedVertex[] = new int[graph.length];
+        DFS(0, visitedVertex);
+        return counter - 1 == graph.length;
+    }
+
 
 }

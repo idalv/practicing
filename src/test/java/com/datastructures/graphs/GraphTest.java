@@ -78,4 +78,16 @@ public class GraphTest {
         Graph graph = new Graph(GraphTest.cycleGraphPositive);
         Assert.assertTrue(graph.cycleDetector());
     }
+
+    @Test
+    public void testConnectivityDetectorNegative() {
+        Graph graph = new Graph(GraphTest.cycleGraphPositive);
+        Assert.assertFalse(graph.connectivityDetector());
+    }
+
+    @Test
+    public void testConnectivityDetectorPositive() {
+        Graph graph = new Graph(GraphTest.cycleGraphNegative);
+        Assert.assertTrue(graph.connectivityDetector());
+    }
 }
