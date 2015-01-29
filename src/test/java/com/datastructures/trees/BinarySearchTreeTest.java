@@ -61,6 +61,13 @@ public class BinarySearchTreeTest {
 
     @Test
     public void testTraverseDepthFirstInOrderRecursively() {
+        TreeBuilder<Integer> treeBuilder = new TreeBuilder<Integer>(13);
+        // Build the left tree
+        treeBuilder.root().left(10).advanceLeft().left(2).right(12);
+        // Build the right tree
+        treeBuilder.root().right(25).advanceRight().left(20).right(31).advanceRight().left(29);
+
+        Node<Integer> root = treeBuilder.build();
         BinarySearchTree binarySearchTree = new BinarySearchTree(root);
         final StringBuilder nodes = new StringBuilder();
         Node current = root;
