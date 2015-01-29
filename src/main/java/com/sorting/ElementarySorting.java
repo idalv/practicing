@@ -1,7 +1,6 @@
 package com.sorting;
 
-import java.util.LinkedList;
-import java.util.List;
+import com.util.Utilities;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,16 +24,10 @@ public class ElementarySorting {
     public static int[] selectionSort(int[] array) {
         for (int i = 0; i <= array.length - 2; i++) {
             int smallestIndex = findIndexOfSmallest(array, i);
-            swap(array, i, smallestIndex);
+            Utilities.swap(array, i, smallestIndex);
         }
 
         return array;
-    }
-
-    private static void swap(int[] array, int first, int second) {
-        int tmp = array[second];
-        array[second] = array[first];
-        array[first] = tmp;
     }
 
     private static int findIndexOfSmallest(int[] array, int start) {
@@ -54,7 +47,7 @@ public class ElementarySorting {
         for (int i = 0; i < array.length-1; i++) {
             for (int j = array.length-1; j > i; j--) {
                 if (array[j] < array[j-1]) {
-                    swap(array, j, j-1);
+                    Utilities.swap(array, j, j - 1);
                 }
             }
         }

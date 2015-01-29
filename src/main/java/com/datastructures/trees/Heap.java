@@ -5,7 +5,7 @@ import com.datastructures.trees.Node;
 import com.datastructures.trees.NodeVisitor;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -58,12 +58,18 @@ public class Heap<T extends Comparable<T>> {
 
         // Now ordering the heap to remain its properties
         int currentIndex = 0;
-        while (currentIndex * 2 + 1 < heap.size()) {
+        Heap.moveDown(heap, currentIndex, heap.size()-1);
+
+        return result;
+    }
+
+    public static<T extends Comparable> void moveDown(List<T> heap, int currentIndex, int lastIndex) {
+        while (currentIndex * 2 + 1 <= lastIndex) {
             int leftIndex = currentIndex * 2 + 1;
             int rightIndex = currentIndex * 2 + 2;
 
             int indexOfBiggerNode;
-            if (rightIndex >= heap.size()) {
+            if (rightIndex > lastIndex) {
                 // There is no right child
                 indexOfBiggerNode = leftIndex;
             } else if (heap.get(leftIndex).compareTo(heap.get(rightIndex)) > 0){
@@ -82,8 +88,6 @@ public class Heap<T extends Comparable<T>> {
             heap.set(indexOfBiggerNode, tmp);
             currentIndex = indexOfBiggerNode;
         }
-
-        return result;
     }
 
 
