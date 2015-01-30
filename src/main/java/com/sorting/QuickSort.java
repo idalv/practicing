@@ -29,7 +29,13 @@ public class QuickSort {
         return array;
     }
 
-    public static void sort(int[] array, int left, int right) {
+    private static void sort(int[] array, int left, int right) {
+        int boundary = splitInTwo(array, left, right);
+        if (left < boundary-1) sort(array, left, boundary-1);    // NB! the boundary stays
+        if (boundary+1 < right) sort(array, boundary+1, right);
+    }
+
+    private static int splitInTwo(int[] array, int left, int right) {
         int boundaryIndex = (left + right) / 2; //NB! It is not (right-left)/2
         int boundary = array[boundaryIndex];
 
@@ -50,8 +56,6 @@ public class QuickSort {
         }
         // Return the boundary
         Utilities.swap(array, left, r);
-
-        if (left < r-1) sort(array, left, r-1);    // NB! the boundary stays. That is why we have r-1 and r+1
-        if (r+1 < right) sort(array, r+1, right);
+        return r;
     }
 }
