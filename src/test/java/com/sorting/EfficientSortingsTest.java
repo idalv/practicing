@@ -28,4 +28,10 @@ public class EfficientSortingsTest {
         Assert.assertArrayEquals(new int[]{1, 2, 3, 5, 8, 9, 11, 12, 17, 33, 65, 101},
                 QuickSort.sort(new int[]{2, 3, 5, 8, 9, 12, 1, 65, 11, 33, 101, 17}));
     }
+
+    @Test
+    public void testMergeSort() {
+        Assert.assertArrayEquals(new int[]{1, 2, 3, 5, 8, 9, 11, 12, 17, 33, 65, 101},
+                MergeSort.sort(new int[]{2, 3, 5, 8, 9, 12, 1, 65, 11, 33, 101, 17}, 0, 11));
+    }
 }
