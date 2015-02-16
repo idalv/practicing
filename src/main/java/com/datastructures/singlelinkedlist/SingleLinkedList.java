@@ -8,10 +8,14 @@ package com.datastructures.singlelinkedlist;
  * To change this template use File | Settings | File Templates.
  */
 public class SingleLinkedList<T> {
-    private Node<T> head;
+    public Node<T> head;
 
     public SingleLinkedList() {
         head = null;
+    }
+
+    public SingleLinkedList(Node<T> head) {
+        this.head = head;
     }
 
     public void addAfter(Node<T> afterNode, Node<T> node) {
