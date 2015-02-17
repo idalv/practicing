@@ -1,4 +1,4 @@
-package com.problems.stacksqueues.stackofstacks;
+package com.problems.stacksqueues;
 
 import com.datastructures.singlelinkedlist.Node;
 /**

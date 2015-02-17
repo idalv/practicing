@@ -1,5 +1,8 @@
 package com.problems.stacksqueues.stackofstacks;
 
+import com.problems.stacksqueues.SimpleStack;
+import com.problems.stacksqueues.Stack;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Vladimir Mitev
