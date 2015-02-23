@@ -12,6 +12,9 @@ import java.util.LinkedList;
 public class BinarySearchTree {
     private Node<Integer> root;
 
+    public BinarySearchTree() {
+    }
+
     public BinarySearchTree(Node<Integer> root) {
         this.root = root;
     }
