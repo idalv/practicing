@@ -35,4 +35,21 @@ public class BitManipulationTest {
     public void printPrevious() {
         Assert.assertEquals(38, BitManipulation.printPrevious(41));
     }
+
+    @Test
+    public void countFlips() {
+        Assert.assertEquals(2, BitManipulation.countFlips(29, 15));
+    }
+
+    @Test
+    public void flipOddEven() {
+        Assert.assertEquals(37, BitManipulation.flipOddEven(26));
+        Assert.assertEquals(30, BitManipulation.flipOddEven(45));
+    }
+
+    @Test
+    public void flipOddEvenOptimal() {
+        Assert.assertEquals(37, BitManipulation.flipOddEvenOptimal(26));
+        Assert.assertEquals(30, BitManipulation.flipOddEvenOptimal(45));
+    }
 }

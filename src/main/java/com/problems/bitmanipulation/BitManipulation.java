@@ -104,6 +104,43 @@ public class BitManipulation {
         return n;
     }
 
+    public static int countFlips(int n, int m) {
+        int diff = n ^ m;
+
+        int countDiffs = 0;
+        while (diff != 0) {
+            if ((diff & 1) == 1) {
+                countDiffs++;
+            }
+            diff >>= 1;
+        }
+
+        return countDiffs;
+    }
+
+    public static int flipOddEven(int n) {
+        int c1 = n;
+        int c2 = n >> 1;
+
+        int result = 0;
+        int shift = 0;
+        while (c1 != 0) {
+            result = result | ((c2 & 1) << shift);
+            result = result | ((c1 & 1) << (shift + 1));
+            c1 >>= 2;
+            c2 >>= 2;
+            shift += 2;
+        }
+
+        return result;
+    }
+
+    public static int flipOddEvenOptimal(int n) {
+//        return (n & 0xaaaaaaaa) >> 1 | (n & 0x55555555) << 1;
+        return (n & 0b10101010101010101010101010101010) >> 1
+                | (n & 0b01010101010101010101010101010101) << 1;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(Integer.toBinaryString(-4));
 //
