@@ -84,4 +84,16 @@ public class RecursionTest {
         Assert.assertArrayEquals(new Recursion.Box[] {new Recursion.Box(4, 8, 16)},
                 tallest.toArray(new Recursion.Box[]{}));
     }
+
+    @Test
+    public void getLongestAscSubsequence() {
+        Assert.assertArrayEquals(new Integer[] {10, 11, 12},
+                Recursion.getLongestAscSubsequence(new int[] {13, 14, 10, 11, 12}).toArray(new Integer[]{}));
+    }
+
+    @Test
+    public void getLongestAscSubsequence2() {
+        Assert.assertArrayEquals(new Integer[] {13, 14, 15},
+                Recursion.getLongestAscSubsequence(new int[] {13, 14, 10, 15, 12}).toArray(new Integer[]{}));
+    }
 }

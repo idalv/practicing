@@ -228,4 +228,52 @@ public class Recursion {
             currentHeight -= lastBox.height;
         }
     }
+
+    public static List<Integer> getLongestAscSubsequence(int[] array) {
+        List<Integer>[] solutions = new ArrayList[array.length];
+        getLongestAscSubsequence(array, 0, solutions);
+        return findLongestAscSubsequence(solutions);
+    }
+
+    private static List<Integer> findLongestAscSubsequence(List<Integer>[] solutions) {
+        List<Integer> longest = new ArrayList<>();
+        for (List<Integer> solution : solutions) {
+            if (longest.size() < solution.size()) {
+                longest = solution;
+            }
+        }
+        return longest;
+    }
+
+    private static void getLongestAscSubsequence(int[] array, int indexOfEnd, List<Integer>[] solutions) {
+        if (indexOfEnd >= array.length) {
+            return;
+        }
+
+        int currentElement = array[indexOfEnd];
+        List<Integer> bestSolution = new ArrayList<Integer>();
+        // Iterate through all solutions and find longest that can be enlarged
+        for (int i = 0; i < indexOfEnd; i++) {
+            List<Integer> solution = solutions[i];
+            if (solution == null) {
+                solution = new ArrayList<Integer>();
+            }
+
+            if (array[i] <= currentElement) {
+                // The current solution can be enlarged
+                if (solution.size() > bestSolution.size()) {
+                    bestSolution = solution;
+                }
+            }
+        }
+
+        // Build a solution ending at indexOfEnd
+        List<Integer> newSolution = new ArrayList<>();
+        newSolution.addAll(bestSolution);
+        newSolution.add(currentElement);
+        solutions[indexOfEnd] = newSolution;
+
+        // Go on with the next ending index
+        getLongestAscSubsequence(array, indexOfEnd + 1, solutions);
+    }
 }
