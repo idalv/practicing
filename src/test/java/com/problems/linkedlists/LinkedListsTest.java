@@ -69,6 +69,22 @@ public class LinkedListsTest {
     }
 
     @Test
+    public void testKthNodeRecursively3() {
+        SingleLinkedList<Integer> list = new SingleLinkedList<Integer>();
+        list.addAfter(null, new Node<Integer>(1));
+        list.addAfter(new Node<Integer>(1), new Node<Integer>(2));
+        list.addAfter(new Node<Integer>(2), new Node<Integer>(3));
+        list.addAfter(new Node<Integer>(3), new Node<Integer>(2));
+        list.addAfter(new Node<Integer>(3), new Node<Integer>(1));
+
+        Assert.assertEquals("12312", list.print());
+
+        Node<Integer> result = new Node<Integer>(-1);
+        LinkedLists.getKthToTheLastRecursively3(list.head, 3, result);
+        Assert.assertEquals((Object) 3, result.data);
+    }
+
+    @Test
     public void testAddReversedLists() {
         SingleLinkedList<Integer> first = new SingleLinkedList<Integer>();
         first.addAfter(null, new Node<Integer>(7));

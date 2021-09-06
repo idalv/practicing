@@ -197,4 +197,15 @@ public class LinkedLists {
         return result;
     }
 
+    public static<T> int getKthToTheLastRecursively3(Node<T> current, int k, Node<T> result) {
+        if (current.nextNode == null) {
+            return 1;
+        }
+
+        int currentIndex = 1 + getKthToTheLastRecursively3(current.nextNode, k, result);
+        if (currentIndex == k) {
+            result.data = current.data;
+        }
+        return currentIndex;
+    }
 }
