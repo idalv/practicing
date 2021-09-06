@@ -32,6 +32,19 @@ public class TreeAlgsTest {
     }
 
     @Test
+    public void testIsBalanced2() {
+        TreeBuilder<Integer> treeBuilder = new TreeBuilder<Integer>(13);
+        // Build the left tree
+        treeBuilder.root().left(10).advanceLeft().left(2).right(12);
+        // Build the right tree
+        treeBuilder.root().right(25).advanceRight().left(20).right(31).advanceRight().left(29);
+        Node root = treeBuilder.build();
+
+        boolean isBalanced = TreeAlgs.isBalanced2(root);
+        Assert.assertTrue(isBalanced);
+    }
+
+    @Test
     public void testIsBalancedNegative() {
         TreeBuilder<Integer> treeBuilder = new TreeBuilder<Integer>(13);
         // Build the left tree
@@ -53,7 +66,6 @@ public class TreeAlgsTest {
         BinarySearchTree binarySearchTree = new BinarySearchTree(root);
         final StringBuilder nodes = new StringBuilder();
         binarySearchTree.traverseBreadthFirst(new NodeVisitor() {
-            @Override
             public void visitNode(Node node) {
                 nodes.append(node.key);
             }

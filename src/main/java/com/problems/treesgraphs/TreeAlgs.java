@@ -1,13 +1,11 @@
 package com.problems.treesgraphs;
 
-import com.datastructures.trees.BinarySearchTree;
-import com.datastructures.trees.Node;
-import com.problems.linkedlists.LinkedLists;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+
+import com.datastructures.trees.Node;
+import com.problems.treesgraphs.util.Tree;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,6 +33,15 @@ public class TreeAlgs {
         current.isBalanced = leftTree.isBalanced && rightTree.isBalanced
                 && Math.abs(leftTree.height - rightTree.height) <= 1;
         return current;
+    }
+
+    public static <T> boolean isBalanced2(Node<T> treeRoot) {
+        if (treeRoot == null) {
+            return true;
+        }
+        return Math.abs(Tree.getHeight(treeRoot.left) - Tree.getHeight(treeRoot.right)) <= 1
+            && isBalanced2(treeRoot.left)
+            && isBalanced2(treeRoot.right);
     }
 
     public static Node<Integer> buildMinHeightBST(int[] array, int start, int end) {
