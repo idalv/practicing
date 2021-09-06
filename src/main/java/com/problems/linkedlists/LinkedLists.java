@@ -94,23 +94,6 @@ public class LinkedLists {
         return index;
     }
 
-    private class IntWrapper {
-        public int value = 0;
-    }
-
-    public static<T> Node<T> getKthToTheLastWrapper(Node<T> current, int k, IntWrapper i) {
-        if (current == null) {
-            return null;
-        }
-
-        Node<T> node = getKthToTheLastWrapper(current.nextNode, k, i);
-        i.value = i.value + 1;
-        if (i.value == k) {
-            return current;
-        }
-        return node;
-    }
-
     public static Node<Integer> addReversedLists(Node<Integer> first, Node<Integer> second) {
         if (first == null) {
             return second;
