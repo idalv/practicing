@@ -1,6 +1,5 @@
 package com.problems.mathsprobability;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,7 +30,7 @@ public class MathsTest {
     }
 
     @Test
-    public void testDivide() throws InvalidArgumentException {
+    public void testDivide() throws IllegalArgumentException {
         Assert.assertEquals(7, Maths.divide(35, 5));
         Assert.assertEquals(-7, Maths.divide(-35, 5));
         Assert.assertEquals(-7, Maths.divide(35, -5));
@@ -40,8 +39,8 @@ public class MathsTest {
     }
 
 
-    @Test(expected = InvalidArgumentException.class)
-    public void testDivideByZero() throws InvalidArgumentException {
+    @Test(expected = IllegalArgumentException.class)
+    public void testDivideByZero() throws IllegalArgumentException {
         Maths.divide(7, 0);
     }
 }

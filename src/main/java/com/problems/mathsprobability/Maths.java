@@ -1,7 +1,5 @@
 package com.problems.mathsprobability;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Vladimir Mitev
@@ -44,13 +42,13 @@ public class Maths {
         return result;
     }
 
-    public static int divide(int x, int y) throws InvalidArgumentException {
+    public static int divide(int x, int y) throws IllegalArgumentException {
         if (x == 0) {
             return 0;
         }
 
         if (y == 0) {
-            throw new InvalidArgumentException(new String[]{"Division by zero"});
+            throw new IllegalArgumentException("Division by zero");
         }
 
         if (x < 0 ^ y < 0) {
