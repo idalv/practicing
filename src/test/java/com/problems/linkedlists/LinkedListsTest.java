@@ -155,4 +155,19 @@ public class LinkedListsTest {
 
         Assert.assertTrue(LinkedLists.isPalindrome(head));
     }
+
+    @Test
+    public void testReverse() {
+        SingleLinkedList<Integer> list = new SingleLinkedList<Integer>();
+        list.addAfter(null, new Node<Integer>(1));
+        list.addAfter(new Node<Integer>(1), new Node<Integer>(2));
+        list.addAfter(new Node<Integer>(2), new Node<Integer>(3));
+        list.addAfter(new Node<Integer>(3), new Node<Integer>(2));
+        list.addAfter(new Node<Integer>(3), new Node<Integer>(1));
+
+        Assert.assertEquals("12312", list.print());
+        SingleLinkedList<Integer> result = new SingleLinkedList<Integer>();
+        LinkedLists.reverse(list.head, result);
+        Assert.assertEquals("21321", result.print());
+    }
 }

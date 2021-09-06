@@ -207,4 +207,15 @@ public class LinkedLists {
         }
         return currentIndex;
     }
+
+    public static<T> Node<T> reverse(Node<T> current, SingleLinkedList<T> result) {
+        if (current.nextNode == null) {
+            result.head = new Node<T>(current.data);
+            return result.head;
+        }
+
+        Node<T> newCurrent = reverse(current.nextNode, result);
+        newCurrent.nextNode = new Node<T>(current.data);
+        return newCurrent.nextNode;
+    }
 }
