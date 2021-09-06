@@ -52,7 +52,7 @@ public class LinkedListsTest {
 
         Assert.assertEquals("12312", list.print());
         LinkedLists.getKthToTheLastRecursively(list.head, 3);
-        Assert.assertEquals((Object) 3, LinkedLists.kthNode.data);
+        Assert.assertEquals(3, LinkedLists.kthNode.data);
     }
 
     @Test
