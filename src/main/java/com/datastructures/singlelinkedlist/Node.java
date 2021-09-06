@@ -28,6 +28,19 @@ public class Node<T> {
     public int hashCode() {
         return data != null ? data.hashCode() : 0;
     }
+
+    public String print() {
+        if (this == null) {
+            return "";
+        }
+
+        StringBuilder list = new StringBuilder();
+        for (Node<T> current = this; current != null; current = current.nextNode) {
+            list.append("" + current.data);
+        }
+
+        return list.toString();
+    }
 }
 
 

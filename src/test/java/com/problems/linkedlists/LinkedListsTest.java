@@ -131,6 +131,21 @@ public class LinkedListsTest {
     }
 
     @Test
+    public void testAddListsRecursive() {
+        SingleLinkedList<Integer> first = new SingleLinkedList<Integer>(); //716
+        first.addAfter(null, new Node<Integer>(7));
+        first.addAfter(new Node<Integer>(7), new Node<Integer>(1));
+        first.addAfter(new Node<Integer>(1), new Node<Integer>(6));
+
+        SingleLinkedList<Integer> second = new SingleLinkedList<Integer>(); //295
+        second.addAfter(null, new Node<Integer>(2));
+        second.addAfter(new Node<Integer>(2), new Node<Integer>(9));
+        second.addAfter(new Node<Integer>(9), new Node<Integer>(5));
+
+        Assert.assertEquals("1011", LinkedLists.addListsRecursive(first.head, second.head).print());
+    }
+
+    @Test
     public void testIsPalindrome() {
         Node<Integer> head = new Node<Integer>(1);
         head.nextNode = new Node<Integer>(5);

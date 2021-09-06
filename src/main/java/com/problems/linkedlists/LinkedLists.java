@@ -134,7 +134,7 @@ public class LinkedLists {
 
     public static SingleLinkedList<Integer> addLists(Node<Integer> first, Node<Integer> second) {
         SingleLinkedList<Integer> sum = new SingleLinkedList<Integer>();
-        int carryover = LinkedLists.addLists(first, second, sum);
+        int carryover = addLists(first, second, sum);
         if (carryover > 0) {
             Node<Integer> node = new Node<Integer>(carryover);
             node.nextNode = sum.head;
@@ -155,6 +155,22 @@ public class LinkedLists {
         node.nextNode = sum.head;
         sum.head = node;
         return sumint / 10;
+    }
+
+    public static Node<Integer> addListsRecursive(Node<Integer> first, Node<Integer> second) {
+        if (first.nextNode == null && second.nextNode == null) {
+            Integer sum = first.data + second.data;
+            Node<Integer> tens = new Node<Integer>(sum / 10);
+            tens.nextNode = new Node<Integer>(sum % 10);
+            return tens;
+        }
+
+        Node<Integer> ones = addListsRecursive(first.nextNode, second.nextNode);
+        Integer sum = first.data + second.data + ones.data;
+        ones.data = sum % 10;
+        Node<Integer> tens = new Node<Integer>(sum / 10);
+        tens.nextNode = ones;
+        return tens;
     }
 
     private static Node frontToBack = null;
